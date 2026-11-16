@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassPulse | Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+    <main class="login-container">
+        <section class="login-welcome">
+            <div class="brand">✦ ClassPulse</div>
+            <p class="eyebrow">YOUR ACADEMIC COMPANION</p>
+            <h1>Stay on track.<br>Reach your goals.</h1>
+            <p class="welcome-text">
+                Keep your attendance in check and stay one step
+                ahead of your academic goals.
+            </p>
+            <div class="welcome-note">
+                <span>✓</span> Smart attendance tracking
+                <br><br>
+                <span>✓</span> Personalised attendance insights
+            </div>
+        </section>
+
+        <section class="login-form-section">
+            <p class="eyebrow">WELCOME BACK</p>
+            <h2>Sign in to ClassPulse</h2>
+            <p class="muted">Enter your details to continue.</p>
+
+            <form id="loginForm">
+                <label for="email">Email address</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    required
+                >
+
+                <label for="password">Password</label>
+                <div class="password-wrap">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                    <button type="button" id="togglePassword">
+                        Show
+                    </button>
+                </div>
+
+                <p id="loginMessage" role="alert"></p>
+
+                <button type="submit" class="login-button">
+                    Sign In →
+                </button>
+            </form>
+
+            <p class="login-footer">
+                ClassPulse · Your attendance, made simpler.
+            </p>
+        </section>
+    </main>
+
+    <script src="login.js"></script>
+</body>
+</html>

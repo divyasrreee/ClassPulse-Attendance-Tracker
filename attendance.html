@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassPulse | Attendance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div>
+                <h1>ClassPulse</h1>
+                <p>Smart Attendance Tracker</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="logout-button">Logout</a>
+    </header>
+
+    <main class="dashboard">
+
+        <section class="welcome-section">
+            <h2>Your Attendance Dashboard</h2>
+            <p>Track your attendance and stay on top of your classes.</p>
+        </section>
+
+        <!-- OVERALL ATTENDANCE CALCULATOR -->
+        <section class="calculator-section">
+            <div class="section-heading">
+                <h2>Overall Attendance Calculator</h2>
+                <p>Enter your total classes and the classes you attended.</p>
+            </div>
+
+            <form id="attendanceForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="total">Total Classes</label>
+                        <input
+                            type="number"
+                            id="total"
+                            min="1"
+                            step="1"
+                            placeholder="Example: 100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attended">Classes Attended</label>
+                        <input
+                            type="number"
+                            id="attended"
+                            min="0"
+                            step="1"
+                            placeholder="Example: 80"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="target">Target Attendance (%)</label>
+                        <input
+                            type="number"
+                            id="target"
+                            min="1"
+                            max="100"
+                            step="1"
+                            value="75"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <p id="calculatorError" class="error-message" role="alert"></p>
+
+                <button type="submit" class="primary-button">
+                    Calculate Attendance
+                </button>
+            </form>
+        </section>
+
+        <!-- OVERALL SUMMARY CARDS -->
+        <section id="summarySection" class="summary-section" hidden>
+            <div class="section-heading">
+                <h2>Your Attendance Summary</h2>
+                <p>Here is your current attendance status.</p>
+            </div>
+
+            <div class="summary-grid">
+                <article class="summary-card highlight-card">
+                    <p>Attendance Percentage</p>
+                    <h3 id="summaryPercentage">0%</h3>
+                </article>
+
+                <article class="summary-card">
+                    <p>Classes Attended</p>
+                    <h3 id="summaryAttended">0</h3>
+                </article>
+
+                <article class="summary-card">
+                    <p>Classes Missed</p>
+                    <h3 id="summaryMissed">0</h3>
+                </article>
+
+                <article class="summary-card">
+                    <p>Target Attendance</p>
+                    <h3 id="summaryTarget">75%</h3>
+                </article>
+            </div>
+
+            <div id="summaryStatus" class="summary-status" role="status"></div>
+        </section>
+
+        <!-- SUBJECT-WISE ATTENDANCE -->
+        <section class="subject-attendance">
+            <div class="section-heading">
+                <h2>Subject-wise Attendance</h2>
+                <p>
+                    Update the class counts for each subject to see your
+                    attendance percentage instantly.
+                </p>
+            </div>
+
+            <div class="subject-list">
+
+                <!-- JAVA -->
+                <article class="subject-card" data-subject="java">
+                    <div class="subject-info">
+                        <h3>Java Programming</h3>
+                        <span class="subject-percentage" id="javaPercentage">87.5%</span>
+                    </div>
+
+                    <div class="subject-inputs">
+                        <div class="subject-field">
+                            <label for="javaTotal">Total Classes</label>
+                            <input type="number" id="javaTotal"
+                                   class="subject-total" min="0" step="1" value="40">
+                        </div>
+                        <div class="subject-field">
+                            <label for="javaAttended">Attended Classes</label>
+                            <input type="number" id="javaAttended"
+                                   class="subject-attended" min="0" step="1" value="35">
+                        </div>
+                    </div>
+
+                    <div class="subject-progress">
+                        <div class="subject-progress-fill" id="javaProgress"></div>
+                    </div>
+                    <p class="subject-status" id="javaStatus" role="status"></p>
+                </article>
+
+                <!-- DBMS -->
+                <article class="subject-card" data-subject="dbms">
+                    <div class="subject-info">
+                        <h3>DBMS</h3>
+                        <span class="subject-percentage" id="dbmsPercentage">85.7%</span>
+                    </div>
+
+                    <div class="subject-inputs">
+                        <div class="subject-field">
+                            <label for="dbmsTotal">Total Classes</label>
+                            <input type="number" id="dbmsTotal"
+                                   class="subject-total" min="0" step="1" value="35">
+                        </div>
+                        <div class="subject-field">
+                            <label for="dbmsAttended">Attended Classes</label>
+                            <input type="number" id="dbmsAttended"
+                                   class="subject-attended" min="0" step="1" value="30">
+                        </div>
+                    </div>
+
+                    <div class="subject-progress">
+                        <div class="subject-progress-fill" id="dbmsProgress"></div>
+                    </div>
+                    <p class="subject-status" id="dbmsStatus" role="status"></p>
+                </article>
+
+                <!-- FULL STACK -->
+                <article class="subject-card" data-subject="fullstack">
+                    <div class="subject-info">
+                        <h3>Full Stack Development</h3>
+                        <span class="subject-percentage" id="fullstackPercentage">86.7%</span>
+                    </div>
+
+                    <div class="subject-inputs">
+                        <div class="subject-field">
+                            <label for="fullstackTotal">Total Classes</label>
+                            <input type="number" id="fullstackTotal"
+                                   class="subject-total" min="0" step="1" value="30">
+                        </div>
+                        <div class="subject-field">
+                            <label for="fullstackAttended">Attended Classes</label>
+                            <input type="number" id="fullstackAttended"
+                                   class="subject-attended" min="0" step="1" value="26">
+                        </div>
+                    </div>
+
+                    <div class="subject-progress">
+                        <div class="subject-progress-fill" id="fullstackProgress"></div>
+                    </div>
+                    <p class="subject-status" id="fullstackStatus" role="status"></p>
+                </article>
+
+                <!-- COMPUTER NETWORKS -->
+                <article class="subject-card" data-subject="cn">
+                    <div class="subject-info">
+                        <h3>Computer Networks</h3>
+                        <span class="subject-percentage" id="cnPercentage">78.1%</span>
+                    </div>
+
+                    <div class="subject-inputs">
+                        <div class="subject-field">
+                            <label for="cnTotal">Total Classes</label>
+                            <input type="number" id="cnTotal"
+                                   class="subject-total" min="0" step="1" value="32">
+                        </div>
+                        <div class="subject-field">
+                            <label for="cnAttended">Attended Classes</label>
+                            <input type="number" id="cnAttended"
+                                   class="subject-attended" min="0" step="1" value="25">
+                        </div>
+                    </div>
+
+                    <div class="subject-progress">
+                        <div class="subject-progress-fill" id="cnProgress"></div>
+                    </div>
+                    <p class="subject-status" id="cnStatus" role="status"></p>
+                </article>
+
+                <!-- OPERATING SYSTEMS -->
+                <article class="subject-card" data-subject="os">
+                    <div class="subject-info">
+                        <h3>Operating Systems</h3>
+                        <span class="subject-percentage" id="osPercentage">85.7%</span>
+                    </div>
+
+                    <div class="subject-inputs">
+                        <div class="subject-field">
+                            <label for="osTotal">Total Classes</label>
+                            <input type="number" id="osTotal"
+                                   class="subject-total" min="0" step="1" value="28">
+                        </div>
+                        <div class="subject-field">
+                            <label for="osAttended">Attended Classes</label>
+                            <input type="number" id="osAttended"
+                                   class="subject-attended" min="0" step="1" value="24">
+                        </div>
+                    </div>
+
+                    <div class="subject-progress">
+                        <div class="subject-progress-fill" id="osProgress"></div>
+                    </div>
+                    <p class="subject-status" id="osStatus" role="status"></p>
+                </article>
+
+            </div>
+
+            <p class="subject-note">
+                Note: Subject attendance is calculated separately from overall attendance.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2026 ClassPulse. Stay consistent, stay on track.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
